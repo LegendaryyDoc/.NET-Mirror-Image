@@ -81,7 +81,7 @@ namespace ConsoleApp2
                     {
                         int m = 0;
 
-                        for (int k = 0; k <= bitmap.Width - 1 * 2; k++)
+                        for (int k = 0; k < bitmap.Width * 2; k++)
                         {
                             if (k < bitmap.Width)
                             {
@@ -110,10 +110,11 @@ namespace ConsoleApp2
                         File.Create(saveDirectory + "/" + fi.Name);
                     }
 
-                    Bitmap b = new Bitmap(bitmap.Width * 2, bitmap.Width);
+                    Bitmap b;
 
-                    
+                    Image newImage = (Bitmap)((new ImageConverter()).ConvertFrom(combinedFileContents));
 
+                    b = new Bitmap(newImage);
                     b.Save(saveDirectory + "/" + fi.Name, System.Drawing.Imaging.ImageFormat.Png);
 
                     bitmap.Dispose();
